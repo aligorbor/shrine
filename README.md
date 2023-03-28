@@ -1,3 +1,4 @@
-# MDC-101 for Material Components for Android (Kotlin)
+# Shrine
+Codelabs for Material Components for Android (MDC-Android)
+https://github.com/material-components/material-components-android-codelabs
 
-Contains starter code structure for the MDC-101 Kotlin codelab.
