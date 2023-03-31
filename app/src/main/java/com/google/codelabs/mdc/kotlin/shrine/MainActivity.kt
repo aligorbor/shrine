@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity(), NavigationHost {
         if (addToBackstack) {
             transaction.addToBackStack(null)
         }
-
         transaction.commit()
     }
 }
