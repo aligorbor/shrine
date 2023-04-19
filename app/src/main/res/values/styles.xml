@@ -12,7 +12,7 @@
 
     <style name="Widget.Shrine.Toolbar" parent="Widget.AppCompat.Toolbar">
         <item name="android:background">?attr/colorAccent</item>
-        <item name="android:theme">@style/Theme.Shrine</item>
+        <item name="android:theme">?theme</item>
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="titleTextAppearance">@style/TextAppearance.Shrine.Toolbar</item>
     </style>
@@ -22,10 +22,11 @@
     </style>
 
     <style name="Widget.Shrine.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="hintTextAppearance">@style/TextAppearance.Shrine.TextInputLayout.HintText</item>
-        <item name="hintTextColor">@color/textColorPrimary</item>
+        <item name="hintTextAppearance">
+            @style/TextAppearance.Shrine.TextInputLayout.HintText
+        </item>
         <item name="android:paddingBottom">8dp</item>
-        <item name="boxStrokeColor">@color/textInputOutlineColor</item>
+        <item name="android:textColorHint">?attr/colorPrimaryDark</item>
     </style>
 
     <style name="TextAppearance.Shrine.TextInputLayout.HintText" parent="TextAppearance.MaterialComponents.Subtitle2">
@@ -50,4 +51,22 @@
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
+    <style name="Theme.Shrine.Autumn" parent="Theme.Shrine">
+        <item name="colorPrimary">#FFCF44</item>
+        <item name="colorPrimaryDark">#FD9725</item>
+        <item name="colorAccent">#FD9725</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorError">#FD9725</item>
+    </style>
+
+
+
 </resources>
+
+
+<!--<style name="Widget.Shrine.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
+<!--<item name="hintTextAppearance">@style/TextAppearance.Shrine.TextInputLayout.HintText</item>-->
+<!--<item name="hintTextColor">@color/textColorPrimary</item>-->
+<!--<item name="android:paddingBottom">8dp</item>-->
+<!--<item name="boxStrokeColor">@color/textInputOutlineColor</item>-->
+<!--</style>-->

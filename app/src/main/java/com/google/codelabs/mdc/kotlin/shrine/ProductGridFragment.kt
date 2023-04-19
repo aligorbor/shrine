@@ -35,7 +35,7 @@ class ProductGridFragment : Fragment() {
             val gridLayoutManager = GridLayoutManager(context, 2, RecyclerView.HORIZONTAL, false)
             gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {
-                    return if (position % 3 == 2) 2 else 1
+                   return if (position % 3 == 2) 2 else 1
                 }
             }
             recyclerView.layoutManager = gridLayoutManager
