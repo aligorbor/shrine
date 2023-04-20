@@ -1,8 +1,11 @@
 package com.google.codelabs.mdc.kotlin.shrine
 
+import android.os.Build
 import android.os.Bundle
 import android.view.*
+import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +23,15 @@ class ProductGridFragment : Fragment() {
     ): View {
         binding = ShrProductGridFragmentBinding.inflate(inflater, container, false)
         (activity as AppCompatActivity).setSupportActionBar(binding.appBar)
+        binding.appBar.setNavigationOnClickListener(
+            NavigationIconClickListener(
+                requireActivity(),
+                binding.productGrid,
+                AccelerateDecelerateInterpolator(),
+                ContextCompat.getDrawable(requireContext(), R.drawable.shr_branded_menu), // Menu open icon
+                ContextCompat.getDrawable(requireContext(), R.drawable.shr_close_menu) // Menu close icon
+            )
+        )
         with(binding) {
 //            recyclerView.setHasFixedSize(true)
 //            recyclerView.layoutManager = GridLayoutManager(context, 2, RecyclerView.VERTICAL, false)
@@ -35,17 +47,27 @@ class ProductGridFragment : Fragment() {
             val gridLayoutManager = GridLayoutManager(context, 2, RecyclerView.HORIZONTAL, false)
             gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {
-                   return if (position % 3 == 2) 2 else 1
+                    return if (position % 3 == 2) 2 else 1
                 }
             }
             recyclerView.layoutManager = gridLayoutManager
             val adapter = StaggeredProductCardRecyclerViewAdapter(
-                ProductEntry.initProductEntryList(resources))
+                ProductEntry.initProductEntryList(resources)
+            )
             recyclerView.adapter = adapter
-            val largePadding = resources.getDimensionPixelSize(R.dimen.shr_staggered_product_grid_spacing_large)
-            val smallPadding = resources.getDimensionPixelSize(R.dimen.shr_staggered_product_grid_spacing_small)
+            val largePadding =
+                resources.getDimensionPixelSize(R.dimen.shr_staggered_product_grid_spacing_large)
+            val smallPadding =
+                resources.getDimensionPixelSize(R.dimen.shr_staggered_product_grid_spacing_small)
             recyclerView.addItemDecoration(ProductGridItemDecoration(largePadding, smallPadding))
+
+            // Set cut corner background for API 23+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                productGrid.background =
+                    context?.getDrawable(R.drawable.shr_product_grid_background_shape)
+            }
         }
+
 
 
         return binding.root
